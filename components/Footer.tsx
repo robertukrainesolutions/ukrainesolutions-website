@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4 text-yellow-400">About Us</h3>
             <p className="text-gray-300 mb-4 leading-relaxed">
-              Ukraine Solutions is a 501(c)(3) non-profit organization dedicated to providing humanitarian aid and support for Ukraine.
+              Ukraine Solutions is a 501(c)(3) non-profit organization dedicated to providing aid and support for Ukraine.
             </p>
             <div className="flex space-x-4">
               <a
@@ -60,8 +60,20 @@ export default function Footer() {
               <Link href="/projects" className="text-gray-300 hover:text-yellow-400 transition-colors">
                 Projects
               </Link>
+              <Link href="/posts" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                Posts
+              </Link>
+              <Link href="/financial" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                Financials
+              </Link>
+              <Link href="/corporate-matching" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                Corporate Matching
+              </Link>
               <Link href="/contact-us" className="text-gray-300 hover:text-yellow-400 transition-colors">
                 Contact Us
+              </Link>
+              <Link href="/donate" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                Donate
               </Link>
             </nav>
           </div>
@@ -75,9 +87,6 @@ export default function Footer() {
               </Link>
               <Link href="/defense-needs" className="text-gray-300 hover:text-yellow-400 transition-colors">
                 Defense Needs
-              </Link>
-              <Link href="/human-trafficking" className="text-gray-300 hover:text-yellow-400 transition-colors">
-                Human Trafficking
               </Link>
               <Link href="/partners" className="text-gray-300 hover:text-yellow-400 transition-colors">
                 Partners
@@ -99,14 +108,25 @@ export default function Footer() {
               </li>
               <li className="text-gray-300">
                 <div className="font-semibold mb-1">EIN: 92-0442966</div>
-                <div className="text-sm">501(c)(3) Non-Profit</div>
+                <div className="text-sm mb-3">501(c)(3) Non-Profit</div>
+                <div className="flex items-start">
+                  <svg className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <div className="text-sm leading-relaxed">
+                    <div>PO Box 21</div>
+                    <div>Rockville, VA 23146</div>
+                    <div>USA</div>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-700 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-start items-center">
             <div className="mb-4 md:mb-0 flex items-center space-x-6">
               <Image
                 src="/US_white.svg"
@@ -116,15 +136,12 @@ export default function Footer() {
                 className="opacity-90"
               />
               <Image
-                src="/uploads/candid-seal-platinum-2024-1-300x300.png"
+                src="/uploads/candid-seal-platinum-2025.svg"
                 alt="Candid Seal"
                 width={100}
                 height={100}
                 className="opacity-90"
               />
-            </div>
-            <div className="text-center md:text-right text-gray-400 text-sm">
-              <p>© {new Date().getFullYear()} Ukraine Solutions. All rights reserved.</p>
             </div>
           </div>
         </div>

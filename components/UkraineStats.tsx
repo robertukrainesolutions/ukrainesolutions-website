@@ -10,43 +10,130 @@ interface Statistic {
 }
 
 // Statistics from UN HRMMU, Prosecutor General's Office, and Kyiv School of Economics
-// Note: These should be updated regularly with the latest data
+// Updated with latest verified data as of November 2025
+// Sources: UN HRMMU (Nov 2025), Prosecutor General's Office (March 2025), Kyiv School of Economics, UN
 const statistics: Statistic[] = [
-  { value: '23,640+', label: 'injured civilians', source: 'UN HRMMU' },
-  { value: '146,994+', label: 'war crimes registered', source: 'Prosecutor General\'s Office' },
-  { value: '11,520+', label: 'killed', source: 'UN HRMMU' },
-  { value: '584+', label: 'children died', source: 'UN HRMMU' },
-  { value: '35,160+', label: 'victims among Ukrainians', source: 'UN HRMMU' },
+  { value: '38,472+', label: 'injured civilians', source: 'United Nations HRMMU' },
+  { value: '183,000+', label: 'war crimes registered', source: 'Prosecutor General\'s Office' },
+  { value: '14,534+', label: 'killed', source: 'United Nations HRMMU' },
+  { value: '726+', label: 'children died', source: 'United Nations HRMMU' },
+  { value: '53,006+', label: 'total civilian casualties', source: 'United Nations HRMMU' },
   { value: '167,200+', label: 'civilian buildings destroyed', source: 'Kyiv School of Economics' },
+  { value: '3.6M+', label: 'internally displaced persons', source: 'United Nations' },
+  { value: '1,000+', label: 'educational institutions damaged/destroyed', source: 'United Nations' },
+  { value: '60%+', label: 'loss of total energy capacity', source: 'United Nations/Reuters' },
 ];
 
 export default function UkraineStats() {
   const [daysSinceInvasion, setDaysSinceInvasion] = useState(0);
+  const [yearsSinceCrimeaOccupation, setYearsSinceCrimeaOccupation] = useState(0);
   const [currentDate, setCurrentDate] = useState('');
   const [animatedValues, setAnimatedValues] = useState<number[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Calculate days since full-scale invasion (February 24, 2022)
-    const invasionDate = new Date('2022-02-24T00:00:00');
-    const today = new Date();
-    const diffTime = Math.abs(today.getTime() - invasionDate.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    setDaysSinceInvasion(diffDays);
+    const updateCounters = () => {
+      // Calculate days since full-scale invasion (February 24, 2022)
+      // Count inclusively: Feb 24 is day 1, Feb 25 is day 2, etc.
+      const invasionDate = new Date('2022-02-24T00:00:00');
+      const today = new Date();
+      // Set both dates to midnight for accurate day calculation
+      const invasionMidnight = new Date(invasionDate.getFullYear(), invasionDate.getMonth(), invasionDate.getDate());
+      const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const diffTime = todayMidnight.getTime() - invasionMidnight.getTime();
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1 for inclusive counting
+      setDaysSinceInvasion(diffDays);
 
-    // Format current date for disclaimer
-    const formattedDate = today.toLocaleDateString('en-US', { 
-      month: '2-digit', 
-      day: '2-digit',
-      year: 'numeric'
-    });
-    setCurrentDate(formattedDate);
+      // Calculate years since Crimea occupation (February 27, 2014)
+      const crimeaOccupationDate = new Date('2014-02-27T00:00:00');
+      const crimeaMidnight = new Date(crimeaOccupationDate.getFullYear(), crimeaOccupationDate.getMonth(), crimeaOccupationDate.getDate());
+      const crimeaDiffTime = todayMidnight.getTime() - crimeaMidnight.getTime();
+      const crimeaDiffDays = Math.floor(crimeaDiffTime / (1000 * 60 * 60 * 24));
+      const years = Math.floor(crimeaDiffDays / 365.25);
+      setYearsSinceCrimeaOccupation(years);
+
+      // Format current date for disclaimer
+      const formattedDate = today.toLocaleDateString('en-US', { 
+        month: '2-digit', 
+        day: '2-digit',
+        year: 'numeric'
+      });
+      setCurrentDate(formattedDate);
+    };
+
+    // Update immediately
+    updateCounters();
+
+    // Calculate milliseconds until next midnight
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    const msUntilMidnight = tomorrow.getTime() - now.getTime();
+
+    // Update at midnight, then every hour
+    const midnightTimeout = setTimeout(() => {
+      updateCounters();
+      const hourlyInterval = setInterval(updateCounters, 60 * 60 * 1000);
+      return () => clearInterval(hourlyInterval);
+    }, msUntilMidnight);
+
+    // Also update every hour as a backup
+    const hourlyInterval = setInterval(updateCounters, 60 * 60 * 1000);
+
+    return () => {
+      clearTimeout(midnightTimeout);
+      clearInterval(hourlyInterval);
+    };
   }, []);
 
-  // Parse number from string like "23,640+" to 23640
+  // Parse number from string like "23,640+" to 23640, "3.6M+" to 3600000, "60%+" to 60
   const parseNumber = (value: string): number => {
-    return parseInt(value.replace(/,/g, '').replace('+', ''), 10);
+    let cleaned = value.replace(/,/g, '').replace('+', '').trim();
+    
+    // Handle percentage (e.g., "60%+" -> 60)
+    if (cleaned.includes('%')) {
+      return parseFloat(cleaned.replace('%', ''));
+    }
+    
+    // Handle millions (e.g., "3.6M+" -> 3600000)
+    if (cleaned.toUpperCase().includes('M')) {
+      const num = parseFloat(cleaned.replace(/M/gi, ''));
+      return Math.floor(num * 1000000);
+    }
+    
+    // Handle thousands (e.g., "1.5K+" -> 1500)
+    if (cleaned.toUpperCase().includes('K')) {
+      const num = parseFloat(cleaned.replace(/K/gi, ''));
+      return Math.floor(num * 1000);
+    }
+    
+    // Default: parse as integer
+    return parseInt(cleaned, 10);
+  };
+
+  // Format display value preserving original format (M, %, etc.)
+  const formatDisplayValue = (value: string, animatedNum: number): string => {
+    // Handle percentage
+    if (value.includes('%')) {
+      return `${animatedNum}%+`;
+    }
+    
+    // Handle millions
+    if (value.toUpperCase().includes('M')) {
+      const num = (animatedNum / 1000000).toFixed(1);
+      return `${num}M+`;
+    }
+    
+    // Handle thousands
+    if (value.toUpperCase().includes('K')) {
+      const num = (animatedNum / 1000).toFixed(1);
+      return `${num}K+`;
+    }
+    
+    // Default: format as number with commas
+    return `${animatedNum.toLocaleString()}+`;
   };
 
   // Intersection observer to trigger animation
@@ -112,9 +199,19 @@ export default function UkraineStats() {
   }, [isVisible]);
 
   const getOrdinalSuffix = (n: number): string => {
-    const s = ['th', 'st', 'nd', 'rd'];
-    const v = n % 100;
-    return s[(v - 20) % 10] || s[v] || s[0];
+    // Handle special cases: 11th, 12th, 13th (not 11st, 12nd, 13rd)
+    const j = n % 10;
+    const k = n % 100;
+    if (j === 1 && k !== 11) {
+      return 'st';
+    }
+    if (j === 2 && k !== 12) {
+      return 'nd';
+    }
+    if (j === 3 && k !== 13) {
+      return 'rd';
+    }
+    return 'th';
   };
 
   return (
@@ -126,6 +223,9 @@ export default function UkraineStats() {
           <span className="text-red-600">{getOrdinalSuffix(daysSinceInvasion)}</span>
           {' '}day of Ukraine&apos;s resistance against full-scale Russian aggression
         </h2>
+        <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-700 leading-tight">
+          <span className="text-red-500">{yearsSinceCrimeaOccupation}</span>-year-long Russian occupation of Crimea and parts of the Donetsk and Luhansk regions
+        </p>
       </div>
 
       {/* Statistics Grid */}
@@ -162,8 +262,8 @@ export default function UkraineStats() {
               <div className="mb-2 sm:mb-3">
                 <div className="text-red-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-lg">
                   {isVisible && animatedValues[index] !== undefined
-                    ? `${animatedValues[index].toLocaleString()}+`
-                    : '0+'}
+                    ? formatDisplayValue(stat.value, animatedValues[index])
+                    : stat.value.includes('%') ? '0%+' : stat.value.toUpperCase().includes('M') ? '0M+' : stat.value.toUpperCase().includes('K') ? '0K+' : '0+'}
                 </div>
               </div>
               <div className="text-white text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 drop-shadow-md">

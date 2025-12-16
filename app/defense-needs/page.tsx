@@ -3,71 +3,107 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'Defense Needs - Ukraine Solutions',
-  description: 'Learn about Ukraine\'s urgent defense needs and how you can help.',
+  description: 'Needs: Body Armor - Drones - Satellite Communications - Portable/foldable Solar Panels - Cold Weather Gear - Computer Tablets',
 };
 
 export default function DefenseNeeds() {
   return (
-    <div className="min-h-screen py-16">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold text-center mb-12 text-gray-900">Defense Needs</h1>
-          
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <h2 className="text-3xl font-semibold mb-6 text-gray-900">Urgent Defense Priorities</h2>
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Ukraine Solutions focuses on providing critical defense equipment and supplies to support Ukrainian forces on the front lines. Our top priorities include:
+    <div className="min-h-screen w-full overflow-x-hidden relative">
+      {/* Cohesive Background Blobs - Span entire page */}
+      <div className="fixed inset-0 opacity-20 pointer-events-none z-0">
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-yellow-400 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] bg-blue-400 rounded-full blur-3xl"></div>
+      </div>
+      
+      {/* Hero Section */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden">
+        <div className="container mx-auto px-3 sm:px-4 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-4 sm:mb-6 px-2">
+                Defense Needs
+              </h1>
+            </div>
+            
+            {/* Needs List */}
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed text-center mb-8 sm:mb-12">
+              <strong>Needs:</strong> Body Armor - Drones - Satellite Communications - Portable/foldable Solar Panels - Cold Weather Gear - Computer Tablets
             </p>
             
-            <div className="bg-blue-50 rounded-lg p-6 mb-6">
-              <h3 className="text-2xl font-semibold mb-4 text-gray-900">Drones - Our Top Priority</h3>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                Drones are essential for reconnaissance, surveillance, and tactical operations. They provide Ukrainian forces with critical intelligence and capabilities on the battlefield.
-              </p>
-              <div className="flex justify-center mb-4">
+            {/* Drone Image */}
+            <div className="flex justify-center mb-8 sm:mb-12">
+              <div className="relative w-full max-w-2xl aspect-video rounded-xl sm:rounded-2xl overflow-hidden border-2 border-gray-200 shadow-lg">
                 <Image
-                  src="/uploads/2024/01/U24Drones.png"
-                  alt="U24 Drones"
-                  width={300}
-                  height={300}
-                  className="rounded-lg"
+                  src="/uploads/defense-needs/11.webp"
+                  alt="Drones saving lives in Ukraine"
+                  fill
+                  className="object-cover"
                 />
               </div>
-              <Link
-                href="#"
-                className="inline-block bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
-              >
-                Donate to Support Drones
-              </Link>
             </div>
-
-            <div className="space-y-4">
-              <div className="border-l-4 border-blue-600 pl-4">
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">Communication Equipment</h3>
-                <p className="text-gray-700">Secure communication devices are vital for coordinating operations and maintaining contact between units.</p>
-              </div>
-              
-              <div className="border-l-4 border-blue-600 pl-4">
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">Cybersecurity Tools</h3>
-                <p className="text-gray-700">Protecting digital infrastructure and communications from cyber threats is essential for Ukraine&apos;s defense.</p>
-              </div>
-              
-              <div className="border-l-4 border-blue-600 pl-4">
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">Satellite Receivers</h3>
-                <p className="text-gray-700">Reliable communication and navigation systems are critical for military operations.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gray-50 rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-900">How We Help</h2>
-            <p className="text-gray-700 leading-relaxed">
-              We work directly with trusted partners on the ground in Ukraine to ensure that defense equipment reaches those who need it most. Every donation helps us provide critical support to Ukrainian forces defending their country.
-            </p>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Drones Section */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden border-t border-gray-200">
+        <div className="container mx-auto px-3 sm:px-4 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 text-gray-900 text-center">
+              <strong>Drones: Saving Lives of Our Soldiers in Ukraine! Our Top Priority at Ukraine Solutions!</strong>
+            </h2>
+            
+            <div className="flex justify-center mb-6 sm:mb-8">
+              <div className="relative w-full max-w-2xl aspect-video rounded-xl sm:rounded-2xl overflow-hidden border-2 border-gray-200 shadow-lg">
+                <Image
+                  src="/uploads/defense-needs/11.webp"
+                  alt="Drones saving lives in Ukraine"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-4 sm:space-y-6 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed mb-6 sm:mb-8">
+              <p>
+                In the midst of challenges and conflicts, the safety and well-being of our brave soldiers serving on the frontlines are of paramount importance. At Ukraine Solutions, we stand dedicated to providing them with every possible advantage to protect and preserve their lives.
+              </p>
+              <p>
+                Today, we proudly highlight the remarkable impact of <strong>DRONES</strong> in our mission to safeguard the lives of our soldiers. These unmanned aerial guardians are proving to be a crucial lifeline on the battlefield, enhancing situational awareness and empowering our troops with invaluable support.
+              </p>
+              <p>
+                With precision and speed, drones are helping our forces gain critical intelligence, scout enemy positions, and monitor potential threats from afar. Their real-time data transmission ensures that our soldiers can make informed decisions, minimizing risks and maximizing their effectiveness.
+              </p>
+              <p>
+                Moreover, these advanced technologies enable us to deliver vital supplies and medical aid directly to our troops, even in the most challenging and remote terrains. From emergency medical kits to essential equipment, drones are the key to ensuring our soldiers receive the help they need when they need it the most.
+              </p>
+              <p>
+                Ukraine Solutions is deeply committed to harnessing the potential of drones for the greater good of our nation and our courageous soldiers. By integrating innovation into our relief efforts, we strengthen the collective resolve to protect those who protect us.
+              </p>
+              <p>
+                Join us in supporting this noble cause and making a difference in the lives of our soldiers. Together, we can stand as a beacon of hope and gratitude for their bravery and sacrifice.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+              <Link
+                href="https://www.paypal.com/donate/?hosted_button_id=LA3BPH9RB8R7L"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-md hover:shadow-lg"
+              >
+                Donate
+              </Link>
+              <Link
+                href="/advocacy-for-ukraine"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
+              >
+                Advocacy
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
-

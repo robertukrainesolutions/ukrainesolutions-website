@@ -93,6 +93,9 @@ export default function Header() {
             <Link href="/projects" className="text-gray-800 hover:text-blue-600 font-semibold transition-colors">
               Projects
             </Link>
+            <Link href="/posts" className="text-gray-800 hover:text-blue-600 font-semibold transition-colors">
+              Posts
+            </Link>
             <Link href="/contact-us" className="text-gray-800 hover:text-blue-600 font-semibold transition-colors">
               Contact
             </Link>
@@ -110,17 +113,14 @@ export default function Header() {
                   <Link href="/advocacy-for-ukraine" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
                     Advocacy for Ukraine
                   </Link>
-                  <Link href="/human-trafficking" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Human Trafficking
-                  </Link>
                   <Link href="/defense-needs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
                     Defense Needs
                   </Link>
+                  <Link href="/financial" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                    Financials
+                  </Link>
                   <Link href="/partners" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
                     Partners
-                  </Link>
-                  <Link href="/financial" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Financial
                   </Link>
                 </div>
               </div>
@@ -129,7 +129,9 @@ export default function Header() {
             {/* Action Buttons */}
             <div className="flex items-center space-x-4 ml-6">
               <Link
-                href="#"
+                href="https://www.paypal.com/donate/?hosted_button_id=LA3BPH9RB8R7L"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 px-6 py-2.5 rounded-lg font-bold text-sm transition-all shadow-md hover:shadow-lg"
               >
                 Donate
@@ -172,6 +174,9 @@ export default function Header() {
               <Link href="/projects" className="text-gray-800 hover:text-blue-600 font-semibold py-2">
                 Projects
               </Link>
+              <Link href="/posts" className="text-gray-800 hover:text-blue-600 font-semibold py-2">
+                Posts
+              </Link>
               <Link href="/contact-us" className="text-gray-800 hover:text-blue-600 font-semibold py-2">
                 Contact
               </Link>
@@ -189,23 +194,22 @@ export default function Header() {
                   <Link href="/advocacy-for-ukraine" className="block text-gray-600 hover:text-blue-600 py-1">
                     Advocacy for Ukraine
                   </Link>
-                  <Link href="/human-trafficking" className="block text-gray-600 hover:text-blue-600 py-1">
-                    Human Trafficking
-                  </Link>
                   <Link href="/defense-needs" className="block text-gray-600 hover:text-blue-600 py-1">
                     Defense Needs
                   </Link>
+                  <Link href="/financial" className="block text-gray-600 hover:text-blue-600 py-1">
+                    Financials
+                  </Link>
                   <Link href="/partners" className="block text-gray-600 hover:text-blue-600 py-1">
                     Partners
-                  </Link>
-                  <Link href="/financial" className="block text-gray-600 hover:text-blue-600 py-1">
-                    Financial
                   </Link>
                 </div>
               )}
               <div className="flex items-center space-x-4 pt-4 border-t">
                 <Link
-                  href="#"
+                  href="https://www.paypal.com/donate/?hosted_button_id=LA3BPH9RB8R7L"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-6 py-2.5 rounded-lg font-bold text-sm"
                 >
                   Donate

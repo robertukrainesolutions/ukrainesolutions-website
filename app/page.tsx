@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import WarCrimesGallery from '@/components/WarCrimesGallery';
 import UkraineStats from '@/components/UkraineStats';
-import ProjectsCarousel from '@/components/ProjectsCarousel';
+import ProjectCarousel from '@/components/ProjectCarousel';
 
 const warCrimesImages = [
   '/uploads/photos/03_libkos_Odesa.jpg',
@@ -149,7 +149,12 @@ const projectImages = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
+    <div className="min-h-screen w-full overflow-x-hidden relative">
+      {/* Cohesive Background Blobs - Span entire page */}
+      <div className="fixed inset-0 opacity-20 pointer-events-none z-0">
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-yellow-400 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] bg-blue-400 rounded-full blur-3xl"></div>
+      </div>
       {/* Hero Section - With Background Image */}
       <section className="relative min-h-[100vh] sm:min-h-[90vh] flex items-end justify-center overflow-hidden w-full -mt-[120px]">
         {/* Background Image - Positioned to show bottom */}
@@ -181,9 +186,9 @@ export default function Home() {
 
         {/* Animated Background Elements - Responsive sizes */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-40 h-40 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-yellow-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] bg-blue-600/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-20 left-10 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-yellow-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] bg-blue-600/5 rounded-full blur-3xl"></div>
         </div>
 
         {/* Content - Positioned lower */}
@@ -200,8 +205,8 @@ export default function Home() {
                   <span 
                     className="block bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent break-words"
                     style={{ 
-                      clipPath: 'polygon(0 0, 100% 0, 100% 61%, 0 61%)',
-                      WebkitClipPath: 'polygon(0 0, 100% 0, 100% 61%, 0 61%)'
+                      clipPath: 'polygon(0 0, 100% 0, 100% 58%, 0 58%)',
+                      WebkitClipPath: 'polygon(0 0, 100% 0, 100% 58%, 0 58%)'
                     }}
                   >
                     Ukraine
@@ -210,8 +215,8 @@ export default function Home() {
                   <span 
                     className="absolute inset-0 block bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 bg-clip-text text-transparent break-words"
                     style={{ 
-                      clipPath: 'polygon(0 61%, 100% 61%, 100% 100%, 0 100%)',
-                      WebkitClipPath: 'polygon(0 61%, 100% 61%, 100% 100%, 0 100%)'
+                      clipPath: 'polygon(0 58%, 100% 58%, 100% 100%, 0 100%)',
+                      WebkitClipPath: 'polygon(0 58%, 100% 58%, 100% 100%, 0 100%)'
                     }}
                   >
                     Ukraine
@@ -228,7 +233,9 @@ export default function Home() {
             {/* CTA Buttons - Responsive */}
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mt-8 sm:mt-12 md:mt-16 px-2">
               <Link
-                href="#"
+                href="https://www.paypal.com/donate/?hosted_button_id=LA3BPH9RB8R7L"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:from-yellow-500 hover:via-yellow-600 hover:to-yellow-700 text-gray-900 px-8 sm:px-8 md:px-10 lg:px-12 py-4 sm:py-4 md:py-5 lg:py-6 rounded-lg sm:rounded-xl font-black text-base sm:text-base md:text-lg lg:text-xl transition-all shadow-2xl hover:shadow-yellow-500/50 transform hover:-translate-y-2 overflow-hidden"
               >
                 <span className="relative z-10 flex items-center justify-center space-x-2">
@@ -274,12 +281,6 @@ export default function Home() {
 
       {/* Mission Statement - Enhanced */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden border-t border-gray-200">
-        {/* Animated Background - Responsive */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-yellow-400 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 left-0 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] bg-blue-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-        </div>
-        
         <div className="container mx-auto px-3 sm:px-4 relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-8 sm:mb-10 md:mb-12">
@@ -287,26 +288,18 @@ export default function Home() {
                 Our Mission
               </h2>
             </div>
-            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-16 border-2 border-gray-200 shadow-2xl">
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed text-center mb-4 sm:mb-6 font-medium">
-                Our commitment to Ukraine is driven by purpose and urgency. Since the beginning of the full-scale invasion, our founding team has helped deliver life-saving aid and critical supplies directly to those on the front lines.
-              </p>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed text-center">
-                What began as a personal effort has become a collective movement with a clear goal: to protect lives, support displaced families, and help rebuild a stronger Ukraine.
-              </p>
-            </div>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed text-center mb-4 sm:mb-6 font-medium">
+              Our commitment to Ukraine is driven by purpose and urgency. Since the beginning of the full-scale invasion, our founding team has helped deliver life-saving aid and critical supplies directly to those on the front lines.
+            </p>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed text-center">
+              What began as a personal effort has become a collective movement with a clear goal: to protect lives, support displaced families, and help rebuild a stronger Ukraine.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Projects Section - Enhanced */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden border-t border-gray-200">
-        {/* Animated Background - Responsive */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-yellow-400 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 left-0 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] bg-blue-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-        </div>
-        
         <div className="container mx-auto px-3 sm:px-4 relative z-10">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 mb-4 sm:mb-6 px-2">
@@ -316,7 +309,7 @@ export default function Home() {
               Current and past projects making a real difference in Ukraine
             </p>
           </div>
-          <ProjectsCarousel images={projectImages} />
+          <ProjectCarousel />
         </div>
       </section>
 
@@ -324,8 +317,8 @@ export default function Home() {
       <section className="pb-12 sm:pb-16 md:pb-20 lg:pb-24 pt-12 sm:pt-16 md:pt-20 lg:pt-24 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white relative overflow-hidden border-t border-gray-200">
         {/* Animated Background - Responsive */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-yellow-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-0 left-0 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-yellow-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-blue-400/20 rounded-full blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-3 sm:px-4 relative z-10">
@@ -340,7 +333,9 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-2">
               <Link
-                href="#"
+                href="https://www.paypal.com/donate/?hosted_button_id=LA3BPH9RB8R7L"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:from-yellow-500 hover:via-yellow-600 hover:to-yellow-700 text-gray-900 px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-6 rounded-lg sm:rounded-xl font-black text-sm sm:text-base md:text-lg lg:text-xl transition-all shadow-2xl hover:shadow-yellow-500/50 transform hover:-translate-y-2 overflow-hidden"
               >
                 <span className="relative z-10 flex items-center justify-center space-x-2 sm:space-x-3">

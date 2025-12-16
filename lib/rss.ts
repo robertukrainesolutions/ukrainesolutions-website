@@ -76,7 +76,7 @@ export async function fetchSubstackRSS(feedUrl: string): Promise<BlogPost[]> {
         contentSnippet,
         content: item.content,
         image,
-        author: item.creator || item['dc:creator'] || feed.title,
+        author: item.creator || (item as any)['dc:creator'] || feed.title,
         categories: item.categories || [],
       };
     });

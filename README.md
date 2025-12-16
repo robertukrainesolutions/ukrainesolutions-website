@@ -2,6 +2,8 @@
 
 A modern, redesigned website for Ukraine Solutions built with Next.js 16, React 19, TypeScript, and Tailwind CSS.
 
+<!-- Auto-deployment test -->
+
 ## Features
 
 - Modern, responsive design with Tailwind CSS

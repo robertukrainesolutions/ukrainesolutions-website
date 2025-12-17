@@ -2,7 +2,7 @@
 
 A modern, redesigned website for Ukraine Solutions built with Next.js 16, React 19, TypeScript, and Tailwind CSS.
 
-<!-- Cloudflare Pages auto-deployment fully configured -->
+<!-- Cloudflare Pages auto-deployment configured -->
 
 ## Features
 

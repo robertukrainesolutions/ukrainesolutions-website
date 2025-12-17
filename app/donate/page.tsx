@@ -45,7 +45,7 @@ export default function Donate() {
             </div>
 
             {/* Donation Card */}
-            <div className="bg-gradient-to-br from-blue-50 via-white to-yellow-50 rounded-xl sm:rounded-2xl p-8 sm:p-10 md:p-12 lg:p-16 border-2 border-gray-200 shadow-2xl mb-8">
+            <div id="paypal" className="bg-gradient-to-br from-blue-50 via-white to-yellow-50 rounded-xl sm:rounded-2xl p-8 sm:p-10 md:p-12 lg:p-16 border-2 border-gray-200 shadow-2xl mb-8 scroll-mt-20">
               <div className="text-center mb-8">
                 <div className="inline-block bg-white rounded-lg p-4 sm:p-6 mb-6 shadow-lg border-2 border-gray-200">
                   <Image
@@ -115,6 +115,29 @@ export default function Donate() {
             </div>
 
             <div className="space-y-12 sm:space-y-16 md:space-y-20">
+              {/* Bank Deposit, Wire, or ACH */}
+              <div id="ach-wire" className="border-l-4 border-gray-400 pl-6 sm:pl-8 md:pl-10 scroll-mt-40">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6">
+                  Bank Deposit, Wire, or ACH
+                </h3>
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed mb-6 sm:mb-8 max-w-4xl">
+                  For bank transfers, wire transfers, or ACH payments, please contact us at{' '}
+                  <a href="mailto:info@ukrainesolutions.org" className="text-blue-600 hover:text-blue-700 underline font-semibold transition-colors">
+                    info@ukrainesolutions.org
+                  </a>
+                  {' '}for banking information and instructions.
+                </p>
+                <a
+                  href="mailto:info@ukrainesolutions.org"
+                  className="group inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-800 text-white px-8 py-4 rounded-lg sm:rounded-xl font-bold text-base sm:text-lg md:text-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span>Contact Us</span>
+                </a>
+              </div>
+
               {/* Corporate Matching */}
               <div className="border-l-4 border-blue-600 pl-6 sm:pl-8 md:pl-10">
                 <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6">
@@ -150,29 +173,6 @@ export default function Donate() {
                     <div>USA</div>
                   </div>
                 </div>
-              </div>
-
-              {/* Bank Deposit, Wire, or ACH */}
-              <div className="border-l-4 border-gray-400 pl-6 sm:pl-8 md:pl-10">
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6">
-                  Bank Deposit, Wire, or ACH
-                </h3>
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed mb-6 sm:mb-8 max-w-4xl">
-                  For bank transfers, wire transfers, or ACH payments, please contact us at{' '}
-                  <a href="mailto:info@ukrainesolutions.org" className="text-blue-600 hover:text-blue-700 underline font-semibold transition-colors">
-                    info@ukrainesolutions.org
-                  </a>
-                  {' '}for banking information and instructions.
-                </p>
-                <a
-                  href="mailto:info@ukrainesolutions.org"
-                  className="group inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-800 text-white px-8 py-4 rounded-lg sm:rounded-xl font-bold text-base sm:text-lg md:text-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <span>Contact Us</span>
-                </a>
               </div>
             </div>
           </div>

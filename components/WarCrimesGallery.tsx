@@ -13,6 +13,22 @@ export default function WarCrimesGallery({ images }: WarCrimesGalleryProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [headingVisible, setHeadingVisible] = useState(false);
   const [imagesVisible, setImagesVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile and limit images to half on mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Show 30% (0.6/2) of images on mobile
+  const displayedImages = isMobile ? images.slice(0, Math.ceil(images.length * 0.3)) : images;
 
   useEffect(() => {
     // Observer for when section enters view - triggers heading immediately
@@ -45,7 +61,7 @@ export default function WarCrimesGallery({ images }: WarCrimesGalleryProps) {
         });
       },
       {
-        threshold: 0.1,
+        threshold: 0.01, // Very low threshold for better mobile support
         rootMargin: '100px',
       }
     );
@@ -58,6 +74,14 @@ export default function WarCrimesGallery({ images }: WarCrimesGalleryProps) {
       gridObserver.observe(gridRef.current);
     }
 
+    // Fallback: Show images after 1 second if observer doesn't trigger (mobile safety)
+    const fallbackTimer = setTimeout(() => {
+      if (!imagesVisible) {
+        setHeadingVisible(true);
+        setImagesVisible(true);
+      }
+    }, 1000);
+
     return () => {
       if (sectionRef.current) {
         sectionObserver.unobserve(sectionRef.current);
@@ -65,6 +89,7 @@ export default function WarCrimesGallery({ images }: WarCrimesGalleryProps) {
       if (gridRef.current) {
         gridObserver.unobserve(gridRef.current);
       }
+      clearTimeout(fallbackTimer);
     };
   }, [isVisible, imagesVisible]);
 
@@ -87,7 +112,7 @@ export default function WarCrimesGallery({ images }: WarCrimesGalleryProps) {
 
         {/* Grid container - images populate one by one */}
         <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-0">
-          {images.map((src, index) => {
+          {displayedImages.map((src, index) => {
             const delay = index * 20; // 20ms stagger between images
             
             return (
@@ -108,6 +133,7 @@ export default function WarCrimesGallery({ images }: WarCrimesGalleryProps) {
                   className="object-cover w-full h-full"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
                   loading="lazy"
+                  unoptimized
                 />
               </div>
             );

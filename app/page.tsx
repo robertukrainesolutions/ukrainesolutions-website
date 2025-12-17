@@ -156,7 +156,7 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] bg-blue-400 rounded-full blur-3xl"></div>
       </div>
       {/* Hero Section - With Background Image */}
-      <section className="relative min-h-[100vh] sm:min-h-[90vh] flex items-end justify-center overflow-hidden w-full -mt-[120px]">
+      <section className="relative min-h-[100vh] sm:min-h-[90vh] flex items-end justify-center overflow-hidden w-full -mt-[120px] sm:-mt-[120px]">
         {/* Background Image - Positioned to show bottom */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div 
@@ -193,9 +193,9 @@ export default function Home() {
 
         {/* Content - Positioned lower */}
         <div className="container mx-auto px-3 sm:px-4 pb-8 sm:pb-10 md:pb-12 relative z-10 pt-24 sm:pt-28 md:pt-32 lg:pt-40">
-          <div className="max-w-6xl mx-auto text-center">
+          <div className="max-w-6xl mx-auto text-center relative">
             {/* Main Heading with Animation - Responsive */}
-            <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-8 sm:mb-8 md:mb-10 lg:mb-12 leading-[1.2] text-white drop-shadow-2xl px-2">
+            <h1 className="text-6xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-12 sm:mb-8 md:mb-10 lg:mb-12 leading-[1.2] text-white drop-shadow-2xl px-2 absolute top-[-280px] left-1/2 -translate-x-1/2 w-full sm:relative sm:top-auto sm:left-auto sm:translate-x-0 sm:w-auto">
               <span className="block text-white break-words">
                 Solutions for
               </span>
@@ -226,7 +226,7 @@ export default function Home() {
             </h1>
 
             {/* Subheading - Responsive */}
-            <p className="text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl mb-6 sm:mb-8 md:mb-10 font-light text-white/95 leading-relaxed max-w-4xl mx-auto drop-shadow-lg px-2">
+            <p className="text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl mb-4 sm:mb-8 md:mb-10 font-light text-white/95 leading-relaxed max-w-4xl mx-auto drop-shadow-lg px-2">
               An Experienced Team Committed to Provide Resources and Humanitarian Aid for Ukraine Soldiers, Citizens, Refugees and Help Rebuild Country.
             </p>
 
@@ -269,8 +269,67 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Donation Strip Section - Seamless Integration */}
+      <section className="py-8 sm:py-10 md:py-12 bg-gradient-to-b from-white via-blue-50/30 to-white relative">
+        <div className="container mx-auto px-3 sm:px-4 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            {/* Seamless inline donation options */}
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4">
+              <span className="text-gray-600 font-medium text-sm sm:text-base mr-2">Donate via:</span>
+              
+              {/* PayPal */}
+              <Link
+                href="https://www.paypal.com/donate/?hosted_button_id=LA3BPH9RB8R7L"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/80 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 text-gray-700 hover:text-blue-600 transition-all duration-200 text-sm sm:text-base font-medium"
+              >
+                <Image
+                  src="https://www.paypalobjects.com/marketing/web/logos/paypal-mark-color.svg"
+                  alt="PayPal"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 sm:w-6 sm:h-6"
+                  unoptimized
+                />
+                <span>PayPal</span>
+              </Link>
+
+              {/* ACH / Wire */}
+              <Link
+                href="/donate#ach-wire"
+                className="group inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/80 hover:bg-gray-50 border border-gray-200 hover:border-gray-300 text-gray-700 hover:text-gray-900 transition-all duration-200 text-sm sm:text-base font-medium"
+              >
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+                <span>ACH / Wire</span>
+              </Link>
+
+              {/* Cryptocurrency */}
+              <Link
+                href="https://commerce.coinbase.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/80 hover:bg-yellow-50 border border-gray-200 hover:border-yellow-300 text-gray-700 hover:text-yellow-600 transition-all duration-200 text-sm sm:text-base font-medium"
+              >
+                <Image
+                  src="https://static-assets.coinbase.com/ui-infra/illustration/v1/pictogram/svg/light/coinbaseLogoNavigation-4.svg"
+                  alt="Coinbase"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+                  unoptimized
+                />
+                <span>Crypto</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Ukraine Statistics Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white via-blue-50/30 to-white relative -mt-1 border-t border-gray-200">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white via-blue-50/30 to-white relative -mt-1">
         <div className="container mx-auto px-3 sm:px-4">
           <UkraineStats />
         </div>

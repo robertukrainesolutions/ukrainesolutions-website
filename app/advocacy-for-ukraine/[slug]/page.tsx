@@ -19,6 +19,12 @@ async function getAdvocacyPost(slug: string): Promise<AdvocacyPost | null> {
 }
 
 export async function generateStaticParams() {
+  // Skip if env vars are not set (build time without proper config)
+  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+  if (!projectId || projectId === 'dummy-project-id-for-build' || projectId.trim() === '') {
+    return [];
+  }
+  
   try {
     const posts = await client.fetch<{ slug: string }[]>(advocacyPostSlugsQuery);
     return posts.map((post) => ({

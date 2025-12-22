@@ -1,11 +1,11 @@
 'use client'
 
 import {useCallback, useState} from 'react'
-import {ArrayInputProps, set, useClient} from 'sanity'
+import {ArrayOfObjectsInputProps, set, useClient} from 'sanity'
 import {Button, Stack, Text, Card} from '@sanity/ui'
 import {UploadIcon} from '@sanity/icons'
 
-export function BulkImageUpload(props: ArrayInputProps) {
+export function BulkImageUpload(props: ArrayOfObjectsInputProps) {
   const {onChange, value = []} = props
   const client = useClient({apiVersion: '2024-01-01'})
   const [uploading, setUploading] = useState(false)

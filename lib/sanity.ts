@@ -2,12 +2,15 @@ import { createClient } from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
-// Sanity configuration
+// Sanity configuration for browser-side usage
 export const client = createClient({
   projectId: 'tj76z81j',
   dataset: 'production',
-  useCdn: true, // Set to false if statically generating pages, using ISR or using the Sanity API
-  apiVersion: '2024-01-01', // Use current date (YYYY-MM-DD) to target the latest API version
+  useCdn: true,
+  apiVersion: '2024-01-01',
+  perspective: 'published',
+  // Enable CORS for browser requests
+  withCredentials: false,
 });
 
 // Image URL builder

@@ -3,9 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { client } from '@/lib/sanity';
 import { advocacyPostsQuery } from '@/lib/sanity.queries';
-import { urlFor } from '@/lib/sanity';
+import { client, urlFor } from '@/lib/sanity';
 import type { AdvocacyPost } from '@/lib/sanity';
 
 export default function AdvocacyPosts() {
@@ -25,6 +24,7 @@ export default function AdvocacyPosts() {
       }, 15000);
       
       try {
+        // Use Sanity client for proper API handling
         const fetchedPosts = await client.fetch<AdvocacyPost[]>(advocacyPostsQuery);
         
         clearTimeout(timeoutId);
@@ -38,6 +38,7 @@ export default function AdvocacyPosts() {
         if (isMounted) {
           if (err instanceof Error) {
             setError(err.message);
+            console.error('Error fetching advocacy posts:', err);
           } else {
             setPosts([]);
           }

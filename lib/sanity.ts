@@ -3,13 +3,13 @@ import imageUrlBuilder from '@sanity/image-url';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 // Sanity configuration for browser-side usage
+// Using useCdn: false to avoid CORS issues with CDN endpoint
 export const client = createClient({
   projectId: 'tj76z81j',
   dataset: 'production',
-  useCdn: true,
+  useCdn: false, // Disable CDN to use API endpoint which has better CORS support
   apiVersion: '2024-01-01',
   perspective: 'published',
-  // Enable CORS for browser requests
   withCredentials: false,
 });
 

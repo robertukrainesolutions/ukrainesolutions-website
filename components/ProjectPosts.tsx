@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { urlFor } from '@/lib/sanity';
+import { client, urlFor } from '@/lib/sanity';
+import { projectPostsQuery } from '@/lib/sanity.queries';
 import type { ProjectPost } from '@/lib/sanity';
 
 const POSTS_PER_PAGE = 10;
@@ -26,20 +27,13 @@ export default function ProjectPosts() {
       }, 15000);
       
       try {
-        // Fetch from API route to avoid CORS issues
-        const response = await fetch('/api/project-posts');
-        
-        if (!response.ok) {
-          throw new Error(`Failed to fetch: ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        const fetchedPosts = data.posts || [];
+        // Fetch directly from Sanity using client (useCdn: false to avoid CORS)
+        const fetchedPosts = await client.fetch<ProjectPost[]>(projectPostsQuery);
         
         clearTimeout(timeoutId);
         
         if (isMounted) {
-          setPosts(fetchedPosts);
+          setPosts(fetchedPosts || []);
           setError(null);
         }
       } catch (err) {

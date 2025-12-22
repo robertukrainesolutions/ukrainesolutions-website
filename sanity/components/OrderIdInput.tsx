@@ -1,7 +1,7 @@
 'use client'
 
 import {useEffect, useState} from 'react'
-import {NumberInputProps, useClient, useFormValue} from 'sanity'
+import {NumberInputProps, useClient, useFormValue, set} from 'sanity'
 import {Stack, Text, Card} from '@sanity/ui'
 
 export function OrderIdInput(props: NumberInputProps) {
@@ -21,13 +21,13 @@ export function OrderIdInput(props: NumberInputProps) {
       client.fetch(query, {type: documentType})
         .then((max: number | null) => {
           const nextOrder = max !== null && max !== undefined ? max + 1 : 1
-          // Use setPatch to update the value
-          onChange([{type: 'set', path: [], value: nextOrder}])
+          // Use set to update the value
+          onChange(set(nextOrder))
         })
         .catch((error) => {
           console.error('Error fetching max order:', error)
           // Default to 1 if error
-          onChange([{type: 'set', path: [], value: 1}])
+          onChange(set(1))
         })
         .finally(() => {
           setLoading(false)

@@ -88,7 +88,7 @@ export const projectPost = defineType({
         layout: 'grid',
       },
       components: {
-        input: (props) => {
+        input: (props: any) => {
           // Import the component dynamically to avoid SSR issues
           const BulkImageUpload = require('../components/BulkImageUpload').BulkImageUpload
           return BulkImageUpload(props)

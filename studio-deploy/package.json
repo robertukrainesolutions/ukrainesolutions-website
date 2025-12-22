@@ -1,0 +1,19 @@
+{
+  "name": "ukrainesolutions-studio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "16.0.10",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "next-sanity": "^11.6.12",
+    "sanity": "^4.22.0",
+    "@sanity/vision": "^4.22.0"
+  }
+}
+

@@ -257,7 +257,7 @@ export default function UkraineStats() {
           {statistics.map((stat, index) => (
             <div
               key={index}
-              className="text-center group hover:scale-105 transition-all duration-300 p-4 sm:p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-red-500/50"
+              className="text-center group p-4 sm:p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20"
             >
               <div className="mb-2 sm:mb-3">
                 <div className="text-red-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-lg">

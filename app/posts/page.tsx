@@ -1,6 +1,48 @@
 'use client';
 
+import { useEffect } from 'react';
+
 export default function Posts() {
+  useEffect(() => {
+    // Load Facebook SDK
+    if (typeof window !== 'undefined' && !(window as any).FB) {
+      // Create fb-root div if it doesn't exist
+      if (!document.getElementById('fb-root')) {
+        const fbRoot = document.createElement('div');
+        fbRoot.id = 'fb-root';
+        document.body.appendChild(fbRoot);
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0';
+      script.async = true;
+      script.defer = true;
+      script.crossOrigin = 'anonymous';
+      script.onload = () => {
+        // Parse XFBML after SDK loads
+        if ((window as any).FB) {
+          (window as any).FB.XFBML.parse();
+        }
+      };
+      document.body.appendChild(script);
+
+      return () => {
+        // Cleanup
+        const existingScript = document.querySelector('script[src*="sdk.js"]');
+        if (existingScript) {
+          existingScript.remove();
+        }
+        const fbRoot = document.getElementById('fb-root');
+        if (fbRoot) {
+          fbRoot.remove();
+        }
+      };
+    } else if (typeof window !== 'undefined' && (window as any).FB) {
+      // SDK already loaded, parse XFBML
+      (window as any).FB.XFBML.parse();
+    }
+  }, []);
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden relative">
       {/* Cohesive Background Blobs - Span entire page */}
@@ -28,19 +70,19 @@ export default function Posts() {
       {/* Facebook Posts Section */}
       <section className="py-6 sm:py-8 md:py-10 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden">
         <div className="relative z-10">
-          {/* Facebook Page Plugin Embed - Centered */}
-          <div className="flex items-center justify-center w-full">
-            <iframe
-              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FUkrainesolution&tabs=timeline&width=500&height=1200&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-              width="500"
-              height="1200"
-              style={{ border: 'none', overflow: 'hidden' }}
-              scrolling="yes"
-              frameBorder="0"
-              allowFullScreen={true}
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              title="Ukraine Solutions Facebook Posts"
-            ></iframe>
+          {/* Facebook Page Plugin Embed - Using FB SDK */}
+          <div className="flex items-center justify-center w-full px-4">
+            <div 
+              className="fb-page" 
+              data-href="https://www.facebook.com/Ukrainesolution"
+              data-tabs="timeline"
+              data-width="500"
+              data-height="1200"
+              data-small-header="false"
+              data-adapt-container-width="true"
+              data-hide-cover="false"
+              data-show-facepile="true"
+            ></div>
           </div>
           
           <div className="container mx-auto px-3 sm:px-4 mt-12">

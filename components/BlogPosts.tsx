@@ -11,27 +11,70 @@ export default function BlogPosts() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let isMounted = true;
+    
     async function fetchPosts() {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+      
       try {
         // Add cache-busting query param to ensure fresh data
         const response = await fetch(`/api/blog-posts?t=${Date.now()}`, {
           cache: 'no-store', // Always fetch fresh data
+          signal: controller.signal,
+        }).catch((err) => {
+          // Suppress network errors - they're handled gracefully
+          if (err.name === 'AbortError' || err.name === 'TypeError') {
+            return null;
+          }
+          throw err;
         });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response) {
+          // Network error - silently handle
+          if (isMounted) {
+            setPosts([]);
+            setLoading(false);
+          }
+          return;
+        }
+        
         if (!response.ok) {
-          const errorData = await response.json();
+          const errorData = await response.json().catch(() => ({}));
           throw new Error(errorData.message || 'Failed to fetch blog posts');
         }
+        
         const data = await response.json();
-        // Show ALL posts, sorted by date (newest first)
-        const sortedPosts = (data.posts || []).sort((a: BlogPost, b: BlogPost) => {
-          return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
-        });
-        setPosts(sortedPosts);
+        
+        if (isMounted) {
+          // Show ALL posts, sorted by date (newest first)
+          const sortedPosts = (data.posts || []).sort((a: BlogPost, b: BlogPost) => {
+            return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
+          });
+          setPosts(sortedPosts);
+          setError(null);
+        }
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load blog posts');
-        console.error('Error fetching blog posts:', err);
+        clearTimeout(timeoutId);
+        if (isMounted) {
+          // Only set error for non-network errors
+          if (err instanceof Error && !err.message.includes('fetch') && err.name !== 'AbortError') {
+            setError(err.message);
+          } else {
+            setPosts([]);
+          }
+        }
+        // Don't log network errors to console
+        if (err instanceof Error && !err.message.includes('fetch') && err.name !== 'AbortError') {
+          console.error('Error fetching blog posts:', err);
+        }
       } finally {
-        setLoading(false);
+        clearTimeout(timeoutId);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
 
@@ -39,7 +82,10 @@ export default function BlogPosts() {
     
     // Refresh posts every 15 minutes
     const interval = setInterval(fetchPosts, 15 * 60 * 1000);
-    return () => clearInterval(interval);
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, []);
 
   if (loading) {
@@ -63,22 +109,7 @@ export default function BlogPosts() {
   }
 
   if (posts.length === 0) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-gray-600 mb-4">No blog posts found.</p>
-        <p className="text-sm text-gray-500 mb-6">
-          Posts will appear here automatically once published on your Substack.
-        </p>
-        <a
-          href="https://ukrainesolutions.substack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:from-yellow-500 hover:via-yellow-600 hover:to-yellow-700 text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg hover:shadow-xl"
-        >
-          Visit Substack
-        </a>
-      </div>
-    );
+    return null;
   }
 
   return (

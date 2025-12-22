@@ -108,6 +108,12 @@ body {
   position: relative;
   overflow: hidden;
   aspect-ratio: 1;
+  cursor: default;
+}
+
+.war-crime-image:hover {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 .war-crime-image img {
@@ -115,6 +121,7 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+  pointer-events: none;
 }
 
 /* War Crimes Gallery Heading Animation */

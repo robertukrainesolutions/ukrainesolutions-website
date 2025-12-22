@@ -1,0 +1,22 @@
+{
+  "name": "studio-ukrainesolutions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sanity/vision": "^5.0.1",
+    "next-sanity": "^12.0.5",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sanity": "^5.0.1"
+  }
+}

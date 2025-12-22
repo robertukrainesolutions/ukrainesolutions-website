@@ -29,18 +29,6 @@ export default function DefenseNeeds() {
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed text-center mb-8 sm:mb-12">
               <strong>Needs:</strong> Body Armor - Drones - Satellite Communications - Portable/foldable Solar Panels - Cold Weather Gear - Computer Tablets
             </p>
-            
-            {/* Drone Image */}
-            <div className="flex justify-center mb-8 sm:mb-12">
-              <div className="relative w-full max-w-2xl aspect-video rounded-xl sm:rounded-2xl overflow-hidden border-2 border-gray-200 shadow-lg">
-                <Image
-                  src="/uploads/defense-needs/11.webp"
-                  alt="Drones saving lives in Ukraine"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>

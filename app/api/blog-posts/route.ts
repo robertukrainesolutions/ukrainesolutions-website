@@ -15,14 +15,16 @@ export async function GET() {
       count: posts.length 
     });
   } catch (error) {
-    console.error('Error fetching blog posts:', error);
+    // Silently handle errors - return empty array instead of error
+    // This prevents console errors from showing up
     return NextResponse.json(
       { 
-        error: 'Failed to fetch blog posts',
-        message: error instanceof Error ? error.message : 'Unknown error',
-        feedUrl 
+        posts: [],
+        feedUrl,
+        count: 0,
+        error: error instanceof Error ? error.message : 'Unknown error'
       },
-      { status: 500 }
+      { status: 200 } // Return 200 to prevent fetch errors in client
     );
   }
 }

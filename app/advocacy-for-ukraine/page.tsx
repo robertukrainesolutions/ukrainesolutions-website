@@ -1,3 +1,5 @@
+import AdvocacyPosts from '@/components/AdvocacyPosts';
+
 export const metadata = {
   title: 'Advocacy for Ukraine - Ukraine Solutions',
   description: 'Learn about our advocacy efforts for Ukraine.',
@@ -5,35 +7,37 @@ export const metadata = {
 
 export default function AdvocacyForUkraine() {
   return (
-    <div className="min-h-screen py-16">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold text-center mb-12 text-gray-900">Advocacy for Ukraine</h1>
-          
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <h2 className="text-3xl font-semibold mb-6 text-gray-900">Our Advocacy Work</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Ukraine Solutions is committed to advocating for Ukraine at the highest levels of government and international organizations. We work tirelessly to ensure that the needs of Ukraine and its people are heard and addressed.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Our advocacy efforts include meetings with members of Congress, participation in international forums, and collaboration with other organizations to amplify Ukraine&apos;s voice on the global stage.
-            </p>
-          </div>
-
-          <div className="bg-blue-50 rounded-lg shadow-lg p-8">
-            <h2 className="text-3xl font-semibold mb-6 text-gray-900">Advocacy on Capitol Hill</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              We regularly meet with lawmakers and policymakers to discuss Ukraine&apos;s urgent needs, including defense assistance, humanitarian aid, and long-term reconstruction support.
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              To learn more about how you can help as an American citizen and a constituent, please visit our partner&apos;s website:{' '}
-              <a href="https://razomforukraine.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 underline">
-                razomforukraine.org
-              </a>
-            </p>
+    <div className="min-h-screen w-full overflow-x-hidden relative">
+      {/* Cohesive Background Blobs - Span entire page */}
+      <div className="fixed inset-0 opacity-20 pointer-events-none z-0">
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-yellow-400 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] bg-blue-400 rounded-full blur-3xl"></div>
+      </div>
+      
+      {/* Hero Section */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden">
+        <div className="container mx-auto px-3 sm:px-4 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-4 sm:mb-6 px-2">
+                Advocacy for Ukraine
+              </h1>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto px-2">
+                Learn about our advocacy efforts for Ukraine
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+{/* Advocacy Posts Section */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden border-t border-gray-200">
+        <div className="container mx-auto px-3 sm:px-4 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <AdvocacyPosts />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

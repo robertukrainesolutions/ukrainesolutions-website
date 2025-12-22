@@ -1,6 +1,7 @@
 'use client';
 
 import BlogPosts from '@/components/BlogPosts';
+import ProjectPosts from '@/components/ProjectPosts';
 
 export default function Projects() {
 
@@ -20,36 +21,46 @@ export default function Projects() {
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-4 sm:mb-6 px-2">
                 Our Projects
               </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto px-2">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto px-2 mb-8 sm:mb-10 md:mb-12">
                 Current and past projects making a real difference in Ukraine
               </p>
+            </div>
+            
+            {/* Statistics Section */}
+            <div className="max-w-5xl mx-auto mt-8 sm:mt-10 md:mt-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+                <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 sm:p-8 border-2 border-blue-500 shadow-xl text-center">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2">$100K+</div>
+                  <div className="text-sm sm:text-base md:text-lg text-blue-100 font-semibold">Donated</div>
+                </div>
+                <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl p-6 sm:p-8 border-2 border-yellow-300 shadow-xl text-center">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-2">30K+</div>
+                  <div className="text-sm sm:text-base md:text-lg text-gray-800 font-semibold">Help People</div>
+                </div>
+                <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 sm:p-8 border-2 border-blue-500 shadow-xl text-center">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2">199+</div>
+                  <div className="text-sm sm:text-base md:text-lg text-blue-100 font-semibold">Events attended</div>
+                </div>
+                <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl p-6 sm:p-8 border-2 border-yellow-300 shadow-xl text-center">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-2">11+</div>
+                  <div className="text-sm sm:text-base md:text-lg text-gray-800 font-semibold">Volunteers</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Statistics Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden border-t border-gray-200">
+      {/* Project Posts Section */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden border-t border-gray-200">
         <div className="container mx-auto px-3 sm:px-4 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 sm:p-8 border-2 border-blue-500 shadow-xl text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2">$100K+</div>
-                <div className="text-sm sm:text-base md:text-lg text-blue-100 font-semibold">Donated</div>
-              </div>
-              <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl p-6 sm:p-8 border-2 border-yellow-300 shadow-xl text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-2">30K+</div>
-                <div className="text-sm sm:text-base md:text-lg text-gray-800 font-semibold">Help People</div>
-              </div>
-              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 sm:p-8 border-2 border-blue-500 shadow-xl text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2">199+</div>
-                <div className="text-sm sm:text-base md:text-lg text-blue-100 font-semibold">Events attended</div>
-              </div>
-              <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl p-6 sm:p-8 border-2 border-yellow-300 shadow-xl text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-2">11+</div>
-                <div className="text-sm sm:text-base md:text-lg text-gray-800 font-semibold">Volunteers</div>
-              </div>
+          <div className="w-full">
+            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 text-gray-900 px-2">
+                Project Updates
+              </h2>
             </div>
+            <ProjectPosts />
           </div>
         </div>
       </section>

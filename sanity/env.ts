@@ -3,13 +3,13 @@ export const apiVersion =
 
 // Provide fallback values during build time to prevent build failures
 // These will be overridden at runtime with actual environment variables
-export const dataset = 
-  process.env.NEXT_PUBLIC_SANITY_DATASET || 
-  (process.env.NODE_ENV === 'production' ? '' : 'production')
+// Using valid-looking dummy values that won't cause Sanity client to fail
+// Handle both undefined and empty string cases
+const envDataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+export const dataset = (envDataset && envDataset.trim() !== '') ? envDataset : 'production'
 
-export const projectId = 
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 
-  (process.env.NODE_ENV === 'production' ? '' : 'dummy-project-id')
+const envProjectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+export const projectId = (envProjectId && envProjectId.trim() !== '') ? envProjectId : 'dummy-project-id-for-build'
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {

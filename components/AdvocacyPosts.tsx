@@ -3,8 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { advocacyPostsQuery } from '@/lib/sanity.queries';
-import { client, urlFor } from '@/lib/sanity';
+import { urlFor } from '@/lib/sanity';
 import type { AdvocacyPost } from '@/lib/sanity';
 
 export default function AdvocacyPosts() {
@@ -24,13 +23,20 @@ export default function AdvocacyPosts() {
       }, 15000);
       
       try {
-        // Use Sanity client for proper API handling
-        const fetchedPosts = await client.fetch<AdvocacyPost[]>(advocacyPostsQuery);
+        // Fetch from API route to avoid CORS issues
+        const response = await fetch('/api/advocacy-posts');
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        const fetchedPosts = data.posts || [];
         
         clearTimeout(timeoutId);
         
         if (isMounted) {
-          setPosts(fetchedPosts || []);
+          setPosts(fetchedPosts);
           setError(null);
         }
       } catch (err) {

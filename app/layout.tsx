@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Ukraine Solutions - Humanitarian Aid for Ukraine",
+  title: "Ukraine Solutions",
   description: "An Experienced Team Committed to Provide Resources and Humanitarian Aid for Ukraine Soldiers, Citizens, Refugees and Help Rebuild Country.",
   keywords: "Ukraine, humanitarian aid, non-profit, refugees, soldiers, defense, drones",
 };
